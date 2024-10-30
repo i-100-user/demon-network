@@ -1,0 +1,38 @@
+ -------------------------------------------------
+|def print_ascii_banner(text):                     |
+|    ascii_banner = pyfiglet.figlet_format(text)   |
+|    print(ascii_banner)                           |
+---------------------------------------------------
+ \ 
+  \
+  \/
+   primero creamos una funcion por ejemplo banner y le pasamos un argumento "text"  que valdra ("Network Scanner")
+   creamos una variable ascii_banner donde ponemos estos parametros
+   pyfiglet.figlet_format(text) para trasformar el texto en ascii
+   luego imprimimos la variable ascii_banner , para que se muestre el banner 
+   y por ultimo  la llamamos y pasando el argumento Network Scanner que se almazena en la variable text 
+
+----------------------------------------------
+|def scan_network(ip):                         |
+|    target_ip = f"{ip.rsplit('.', 1)[0]}.0/24"|
+|    print(f"Escaneando el rango: {target_ip}")|
+-----------------------------------------------
+ \ 
+  \
+  \/
+  creamos una funcion que escanee la red  por ejemplo scan_network con el parametro ip 
+  creamos una variable llamada target_ip donde pondremos una string  , la pesamos la variable ip y con rsplit para dividir la ip  con el segmento '.' .
+  target_ip = f"{ip.rsplit('.', 1)[0]}.0/24":
+
+Usa rsplit('.', 1) para dividir la IP a partir del último punto (.). Esto crea una lista donde el primer elemento es "192.168.1" (en el caso de "192.168.1.5") y el segundo elemento es "5".
+Luego, [0] selecciona la parte de la IP sin el último segmento, dejando solo "192.168.1".
+Finalmente, se agrega .0/24, que convierte esa IP en el rango de la subred, formando "192.168.1.0/24". Este formato /24 representa un rango típico de 256 direcciones IP en esa subred.
+
+luego  imprimimos la variable target_ip 
+
+--------------------------------------------------
+    arp    = ARP(pdst=target_ip)                      |
+    ether  = Ether(dst="ff:ff:ff:ff:ff:ff")       |
+    packet = ether / arp                          |
+    result = srp(packet, timeout=2, verbose=0)[0] |
+---------------------------------------------------
